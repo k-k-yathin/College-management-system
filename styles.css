@@ -1,0 +1,842 @@
+:root {
+  color-scheme: light;
+  --bg: #0b1220;
+  --surface: rgba(255, 255, 255, 0.08);
+  --surface-strong: rgba(255, 255, 255, 0.12);
+  --text: #ecf2ff;
+  --muted: rgba(236, 242, 255, 0.72);
+  --border: rgba(236, 242, 255, 0.12);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --accent: #6ee7ff;
+  --accent-2: #a78bfa;
+  --danger: #fb7185;
+  --radius: 16px;
+  --radius-sm: 12px;
+  --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
+    "Segoe UI Emoji";
+  --display: ui-serif, "New York", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f6f7fb;
+  --surface: rgba(0, 0, 0, 0.04);
+  --surface-strong: rgba(0, 0, 0, 0.07);
+  --text: #111827;
+  --muted: rgba(17, 24, 39, 0.65);
+  --border: rgba(17, 24, 39, 0.12);
+  --shadow: 0 12px 28px rgba(17, 24, 39, 0.12);
+  --accent: #2563eb;
+  --accent-2: #7c3aed;
+  --danger: #e11d48;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--text);
+  background:
+    radial-gradient(1200px 600px at 15% 10%, color-mix(in oklab, var(--accent) 32%, transparent), transparent 55%),
+    radial-gradient(900px 500px at 85% 0%, color-mix(in oklab, var(--accent-2) 28%, transparent), transparent 55%),
+    var(--bg);
+}
+
+main {
+  padding-bottom: 70px;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.95em;
+}
+
+.container {
+  width: min(1140px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  background: color-mix(in oklab, var(--bg) 75%, transparent);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0;
+  gap: 12px;
+}
+
+.header-left {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand {
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 13px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--surface-strong) 70%, transparent);
+}
+
+.header-subtitle {
+  font-size: 13px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.card {
+  margin: 28px 0;
+  padding: 26px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--surface-strong), var(--surface));
+  box-shadow: var(--shadow);
+}
+
+.dashboard-page {
+  padding: 18px;
+}
+
+p {
+  margin: 0 0 18px;
+  line-height: 1.5;
+}
+
+.hero {
+  padding: 34px;
+}
+
+.panel {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: color-mix(in oklab, var(--surface) 80%, transparent);
+  padding: 14px;
+}
+
+.panel-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.pill {
+  margin-left: auto;
+  font-size: 12px;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--surface-strong) 70%, transparent);
+  color: var(--text);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--surface-strong) 65%, transparent);
+}
+
+.chip-label {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.chip-value {
+  font-weight: 750;
+  letter-spacing: 0.02em;
+}
+
+.hero-top {
+  padding: 8px 4px 14px;
+}
+
+.hero-kicker {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.hero-title {
+  margin: 0 0 10px;
+  font-family: var(--display);
+  font-size: clamp(34px, 5vw, 62px);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--text) 92%, white),
+    color-mix(in oklab, var(--accent) 70%, var(--text)),
+    color-mix(in oklab, var(--accent-2) 62%, var(--text))
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 1px 0 color-mix(in oklab, var(--border) 70%, transparent);
+}
+
+.hero-subtitle {
+  margin: 0 0 18px;
+  max-width: 66ch;
+}
+
+.role-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+@media (max-width: 920px) {
+  .role-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.role-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  background: color-mix(in oklab, var(--surface) 80%, transparent);
+  box-shadow: 0 1px 0 color-mix(in oklab, var(--border) 55%, transparent);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: transform 140ms ease, border-color 140ms ease, background 140ms ease;
+}
+
+.role-card:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in oklab, var(--accent) 35%, var(--border));
+}
+
+.role-card[data-selected="true"] {
+  border-color: color-mix(in oklab, var(--accent) 55%, var(--border));
+  background: color-mix(in oklab, var(--accent) 10%, var(--surface));
+}
+
+.role-card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.role-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--accent) 26%, var(--surface-strong)),
+    color-mix(in oklab, var(--accent-2) 10%, var(--surface))
+  );
+  color: color-mix(in oklab, var(--accent) 55%, var(--text));
+}
+
+.role-svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.role-title {
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+
+.role-desc {
+  font-size: 13px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.role-btn {
+  width: 100%;
+}
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 18px 0;
+}
+
+.role-area {
+  display: grid;
+  gap: 10px;
+}
+
+.role-area h2 {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+
+.role-area ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+}
+
+.role-area li {
+  margin: 6px 0;
+  line-height: 1.4;
+}
+
+.message {
+  display: none;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--surface-strong) 70%, transparent);
+  margin-bottom: 12px;
+}
+
+.message[data-variant="error"] {
+  display: block;
+  border-color: color-mix(in oklab, var(--danger) 40%, var(--border));
+  background: color-mix(in oklab, var(--danger) 14%, var(--surface));
+}
+
+.message[data-variant="success"] {
+  display: block;
+  border-color: color-mix(in oklab, var(--accent) 40%, var(--border));
+  background: color-mix(in oklab, var(--accent) 12%, var(--surface));
+}
+
+.message[data-variant="info"] {
+  display: block;
+}
+
+.auth,
+.dashboard {
+  display: grid;
+  gap: 12px;
+}
+
+.toggle {
+  display: inline-flex;
+  gap: 8px;
+  padding: 6px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--surface-strong) 62%, transparent);
+  width: fit-content;
+}
+
+.toggle-btn {
+  appearance: none;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text);
+  padding: 10px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.toggle-btn[aria-pressed="true"] {
+  border-color: color-mix(in oklab, var(--accent) 35%, var(--border));
+  background: color-mix(in oklab, var(--accent) 14%, var(--surface));
+}
+
+.form {
+  display: grid;
+  gap: 12px;
+}
+
+.form.compact {
+  gap: 10px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+label {
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+input,
+select {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 11px 12px;
+  background: color-mix(in oklab, var(--surface-strong) 80%, transparent);
+  color: var(--text);
+  outline: none;
+}
+
+textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 11px 12px;
+  background: color-mix(in oklab, var(--surface-strong) 80%, transparent);
+  color: var(--text);
+  outline: none;
+  resize: vertical;
+}
+
+input:focus,
+select:focus {
+  border-color: color-mix(in oklab, var(--accent) 55%, var(--border));
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 18%, transparent);
+}
+
+textarea:focus {
+  border-color: color-mix(in oklab, var(--accent) 55%, var(--border));
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 18%, transparent);
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.fineprint {
+  font-size: 12px;
+}
+
+.dash-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.dash-title {
+  font-weight: 750;
+}
+
+.dash-body {
+  display: grid;
+  gap: 10px;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+@media (max-width: 920px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+}
+
+.app-nav {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: color-mix(in oklab, var(--surface) 85%, transparent);
+  padding: 10px;
+  display: grid;
+  gap: 8px;
+  position: sticky;
+  top: 86px;
+}
+
+@media (max-width: 920px) {
+  .app-nav {
+    position: static;
+  }
+}
+
+.nav-item {
+  appearance: none;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text);
+  border-radius: 12px;
+  padding: 10px 10px;
+  cursor: pointer;
+  font-weight: 750;
+  text-align: left;
+}
+
+.nav-item:hover {
+  border-color: color-mix(in oklab, var(--accent) 30%, var(--border));
+  background: color-mix(in oklab, var(--surface-strong) 65%, transparent);
+}
+
+.nav-item.is-active {
+  border-color: color-mix(in oklab, var(--accent) 45%, var(--border));
+  background: color-mix(in oklab, var(--accent) 12%, var(--surface));
+}
+
+.app-view {
+  display: grid;
+  gap: 12px;
+}
+
+.stack {
+  display: grid;
+  gap: 12px;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 720px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+}
+
+.actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 920px) {
+  .kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.kpi {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: color-mix(in oklab, var(--surface) 85%, transparent);
+  padding: 12px;
+}
+
+.kpi-label {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.kpi-value {
+  font-weight: 850;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+
+.list {
+  display: grid;
+  gap: 8px;
+}
+
+.list-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--surface-strong) 62%, transparent);
+}
+
+.list-title {
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.list-btn {
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+}
+
+.checklist {
+  display: grid;
+  gap: 8px;
+}
+
+.check-item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--surface-strong) 62%, transparent);
+  cursor: pointer;
+  user-select: none;
+}
+
+.check-item input {
+  width: 18px;
+  height: 18px;
+}
+
+.check-text {
+  font-weight: 700;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 720px) {
+  .grid2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.notice-list {
+  display: grid;
+  gap: 10px;
+}
+
+.notice {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px;
+  background: color-mix(in oklab, var(--surface) 85%, transparent);
+}
+
+.notice-top {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.notice-title {
+  font-weight: 850;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+
+.notice-meta {
+  font-size: 12px;
+}
+
+.notice-body {
+  margin-top: 10px;
+  color: color-mix(in oklab, var(--text) 90%, var(--muted));
+  line-height: 1.45;
+  white-space: pre-wrap;
+}
+
+.ticker {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 46px;
+  border-top: 1px solid var(--border);
+  background: color-mix(in oklab, var(--bg) 82%, transparent);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  z-index: 50;
+}
+
+.ticker-track {
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  white-space: nowrap;
+  padding-left: 100%;
+  animation: ticker-move 26s linear infinite;
+}
+
+.ticker-item {
+  font-weight: 750;
+  letter-spacing: -0.01em;
+  color: color-mix(in oklab, var(--text) 92%, var(--muted));
+}
+
+.ticker-sep {
+  color: var(--muted);
+}
+
+@keyframes ticker-move {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+    padding-left: 0;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 14px;
+}
+
+@media (max-width: 920px) {
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.admin-panel {
+  margin: 0;
+}
+
+.admin-table-wrap {
+  overflow: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 520px;
+  background: color-mix(in oklab, var(--surface) 80%, transparent);
+}
+
+.table th,
+.table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: middle;
+  font-size: 14px;
+}
+
+.table th {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: color-mix(in oklab, var(--surface-strong) 70%, transparent);
+  position: sticky;
+  top: 0;
+}
+
+.th-right {
+  text-align: right;
+}
+
+.td-right {
+  text-align: right;
+}
+
+.btn-primary {
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--accent) 30%, var(--surface-strong)),
+    color-mix(in oklab, var(--accent-2) 10%, var(--surface))
+  );
+  border-color: color-mix(in oklab, var(--accent) 40%, var(--border));
+}
+
+.btn-danger {
+  background: color-mix(in oklab, var(--danger) 14%, var(--surface));
+  border-color: color-mix(in oklab, var(--danger) 35%, var(--border));
+}
+
+.btn {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--surface-strong) 82%, transparent);
+  color: var(--text);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  cursor: pointer;
+  font-weight: 650;
+  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in oklab, var(--accent) 35%, var(--border));
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: color-mix(in oklab, var(--accent) 18%, var(--surface-strong));
+  border-color: color-mix(in oklab, var(--accent) 28%, var(--border));
+}
+
+.site-footer {
+  padding: 20px 0 36px;
+  border-top: 1px solid var(--border);
+  background: color-mix(in oklab, var(--bg) 80%, transparent);
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+}

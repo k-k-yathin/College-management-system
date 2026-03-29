@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>College Management System</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="header-left">
+          <div class="brand">CMS</div>
+          <div class="muted header-subtitle">College Management System</div>
+        </div>
+
+        <div class="header-right">
+          <div class="chip" title="Local time">
+            <span class="chip-label">Time</span>
+            <span id="clock" class="chip-value" aria-live="polite">--:--:--</span>
+          </div>
+
+          <button id="themeToggle" class="btn btn-secondary" type="button" aria-pressed="false">
+            Toggle theme
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section id="landingScreen" class="card hero" aria-label="College Management System">
+        <div class="hero-top">
+          <div class="hero-kicker">College • Academics • Administration</div>
+          <h1 class="hero-title">College Management System</h1>
+        </div>
+
+        <div class="role-grid" role="list" aria-label="User roles">
+          <article class="role-card" role="listitem" data-role-card="student">
+            <div class="role-card-top">
+              <div class="role-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="role-svg">
+                  <path
+                    d="M12 3 2.5 8l9.5 5 9.5-5L12 3Zm-6.5 8.2V16c0 .6.3 1.1.8 1.4C7.9 18.4 10 19 12 19s4.1-.6 5.7-1.6c.5-.3.8-.8.8-1.4v-4.8L12 14.5 5.5 11.2Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <div>
+                <div class="role-title">Student</div>
+              </div>
+            </div>
+            <button class="btn role-btn" type="button" data-select-role="student">Continue as Student</button>
+          </article>
+
+          <article class="role-card" role="listitem" data-role-card="faculty">
+            <div class="role-card-top">
+              <div class="role-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="role-svg">
+                  <path
+                    d="M7 3a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h4v2H9a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2h-2v-2h4a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H7Zm0 2h10v11H7V5Zm2 2h6v2H9V7Zm0 4h6v2H9v-2Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <div>
+                <div class="role-title">Faculty</div>
+              </div>
+            </div>
+            <button class="btn role-btn" type="button" data-select-role="faculty">Continue as Faculty</button>
+          </article>
+
+          <article class="role-card" role="listitem" data-role-card="admin">
+            <div class="role-card-top">
+              <div class="role-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="role-svg">
+                  <path
+                    d="M12 2 20 5v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5l8-3Zm0 2.2L6 6.3V11c0 4 2.6 7.7 6 9 3.4-1.3 6-5 6-9V6.3l-6-2.1Zm-2 5.8h4a2 2 0 0 1 2 2v3.2a2.8 2.8 0 0 1-2.8 2.8h-2.4A2.8 2.8 0 0 1 8 15.2V12a2 2 0 0 1 2-2Zm0 2v3.2c0 .4.4.8.8.8h2.4c.4 0 .8-.4.8-.8V12h-4Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <div>
+                <div class="role-title">Administrator</div>
+              </div>
+            </div>
+            <button class="btn role-btn" type="button" data-select-role="admin">Continue as Administrator</button>
+          </article>
+        </div>
+      </section>
+
+      <section id="loginScreen" class="card" aria-label="Login" hidden>
+        <div class="panel-title">
+          Login
+          <span id="selectedRolePill" class="pill" aria-live="polite">None</span>
+        </div>
+
+        <div class="actions-row">
+          <button id="backToRolesBtn" class="btn btn-secondary" type="button">Back</button>
+        </div>
+
+        <div id="authMessage" class="message" role="status" aria-live="polite"></div>
+
+        <div id="authCard" class="auth">
+          <div id="studentFacultyAuth" hidden>
+            <div class="toggle" role="group" aria-label="Account type">
+              <button id="sfNewBtn" class="toggle-btn" type="button" data-sf-mode="new">New user</button>
+              <button id="sfExistingBtn" class="toggle-btn" type="button" data-sf-mode="existing">
+                Already a user
+              </button>
+            </div>
+
+            <form id="sfForm" class="form">
+              <div class="field">
+                <label for="sfUserId">User ID</label>
+                <input id="sfUserId" name="userId" autocomplete="username" required />
+              </div>
+
+              <div class="field">
+                <label for="sfPassword">Password</label>
+                <input id="sfPassword" name="password" type="password" autocomplete="current-password" required />
+              </div>
+
+              <div id="sfConfirmField" class="field" hidden>
+                <label for="sfConfirmPassword">Confirm password</label>
+                <input id="sfConfirmPassword" name="confirmPassword" type="password" autocomplete="new-password" />
+              </div>
+
+              <div class="form-actions">
+                <button id="sfSubmit" class="btn btn-primary" type="submit">Continue</button>
+              </div>
+
+              <div class="muted fineprint">Demo only: accounts are saved in your browser (localStorage).</div>
+            </form>
+          </div>
+
+          <div id="adminAuth" hidden>
+            <form id="adminForm" class="form">
+              <div class="field">
+                <label for="adminPasskey">Admin passkey</label>
+                <input id="adminPasskey" name="passkey" type="password" required />
+              </div>
+              <div class="form-actions">
+                <button class="btn btn-primary" type="submit">Enter admin</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section id="dashboardScreen" class="card dashboard-page" aria-label="Dashboard" hidden>
+        <div class="dashboard">
+          <div class="dash-top">
+            <div class="dash-title">
+              Signed in as <span id="sessionLabel" class="pill">—</span>
+            </div>
+            <button id="logoutBtn" class="btn btn-secondary" type="button">Log out</button>
+          </div>
+
+          <div class="app-shell">
+            <nav id="appNav" class="app-nav" aria-label="Dashboard navigation"></nav>
+            <div id="appView" class="app-view" aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="ticker" aria-label="Quote ticker">
+      <div class="ticker-track" id="quoteTicker">
+        <span class="ticker-item">“Small daily improvements lead to stunning results.”</span>
+        <span class="ticker-sep">•</span>
+        <span class="ticker-item">“Discipline beats motivation.”</span>
+        <span class="ticker-sep">•</span>
+        <span class="ticker-item">“The best way to predict the future is to build it.”</span>
+        <span class="ticker-sep">•</span>
+        <span class="ticker-item">“Consistency creates confidence.”</span>
+        <span class="ticker-sep">•</span>
+        <span class="ticker-item">“Learn it. Build it. Improve it.”</span>
+      </div>
+    </div>
+
+    <script src="./script.js" defer></script>
+  </body>
+</html>
